@@ -1,6 +1,7 @@
 # Daniz Studio app - server side ( NodeJS )
 This is a private project for Daniz Music Studio, made by Avital Pasternak
-Will be sonn deployed to Heroku :)
+
+Will be soon deployed to Heroku :)
 
 ## 1 - Run server side
 ```
