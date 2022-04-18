@@ -16,4 +16,4 @@ npm i
 node server
 ```
 
-## 2 - Run client side
+## 2 - Run client side - [Click here](https://github.com/avitalpas/daniz-studio-app)
