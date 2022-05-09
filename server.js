@@ -1,12 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const path = require('path')
-const { GridFsStorage } = require('multer-gridfs-storage')
-const grid = require('gridfs-stream')
 const methodOverride = require('method-override')
-const crypto = require('crypto')
-const router = require('express').Router()
 
 // require dotenv
 require('dotenv').config()
@@ -17,7 +12,7 @@ const app = express()
 // set port to 5000
 const port = process.env.PORT || 5000
 
-// all app use
+// app use
 app.use(cors())
 app.use(express.json())
 app.use(methodOverride('_method'))
@@ -32,7 +27,6 @@ const connection = mongoose.connection
 connection.once('open', () => {
     console.log('MongoDB database connection astablished successfully');
 })
-
 
 // routers
 const lessonsRouter = require('./routes/lessons.back.route')
