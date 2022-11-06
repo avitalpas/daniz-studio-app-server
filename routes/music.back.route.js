@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).josn('Error: ' + err))
 })
 
-// get msuic by id
+// get music by id
 router.route('/:id').get((req, res) => {
     Music.findById(req.params.id)
         .then(music => res.json(music))
@@ -80,11 +80,12 @@ router.route('/update/:id').post((req, res) => {
 router.route('/updatePrintedSheets/:id').post((req, res) => {
     Music.findById(req.params.id)
         .then(music => {
-
-            music.instruments = req.body.instruments
+            console.log(music)
+            music.printedNotes = req.body.printedNotes
+            console.log(music)
 
             music.save()
-                .then(() => res.json('Music updated!'))
+                .then(() => res.json('Music instrument done running'))
                 .catch(err => res.status(400).json('Error: ' + err))
         })
         .catch(err => res.status(400).json('Error: ' + err))

@@ -8,6 +8,13 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
+// get lesson by id
+router.route('/:id').get((req, res) => {
+    Lesson.findById(req.params.id)
+        .then(lesson => res.json(lesson))
+        .catch(err => res.status(400).json('Error: ' + err))
+})
+
 // post new lesson
 router.route('/new').post((req,res)=>{
     const studentID = req.body.studentID
@@ -31,6 +38,15 @@ router.route('/new').post((req,res)=>{
 router.route('/:id').delete((req, res) => {
     Lesson.findByIdAndDelete(req.params.id)
         .then(lesson => res.json('Lesson deleted'))
+        .catch(err => res.status(400).json('Error: ' + err))
+})
+
+// get lessons by student id
+router.route('/student/:id').get((req, res) => {
+    Lesson.find({ studentID: req.params.id})
+        .then(lessons => {
+            res.json(lessons)
+        })
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
