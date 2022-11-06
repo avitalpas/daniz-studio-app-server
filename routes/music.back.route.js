@@ -23,6 +23,7 @@ router.route('/new').post((req,res)=>{
         name: req.body.name,
         author: req.body.author,
         difficulty: req.body.difficulty,
+        printedNotes: req.body.printedNotes,
         reCreated: req.body.reCreated,
         mastering: req.body.mastering,
         fillIn: req.body.fillIn,
@@ -56,6 +57,7 @@ router.route('/update/:id').post((req, res) => {
             music.name= req.body.name
             music.author= req.body.author
             music.difficulty= req.body.difficulty
+            music.printedNotes= req.body.printedNotes
             music.reCreated= req.body.reCreated
             music.mastering= req.body.mastering
             music.fillIn= req.body.fillIn
@@ -73,5 +75,20 @@ router.route('/update/:id').post((req, res) => {
         })
         .catch(err => res.status(400).json('Error: ' + err))
 })
+
+// update music by id
+router.route('/updatePrintedSheets/:id').post((req, res) => {
+    Music.findById(req.params.id)
+        .then(music => {
+
+            music.instruments = req.body.instruments
+
+            music.save()
+                .then(() => res.json('Music updated!'))
+                .catch(err => res.status(400).json('Error: ' + err))
+        })
+        .catch(err => res.status(400).json('Error: ' + err))
+})
+
 
 module.exports = router
