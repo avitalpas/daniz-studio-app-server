@@ -10,7 +10,10 @@ require('dotenv').config()
 const app = express()
 
 // set port to 5000
-const port = process.env.PORT || 5000
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 5000;
+}
 
 // app use
 app.use(cors())
@@ -33,13 +36,11 @@ const lessonsRouter = require('./routes/lessons.back.route')
 const studentsRouter = require('./routes/students.back.route')
 const usersRouter = require('./routes/users.back.route')
 const musicRouter = require('./routes/music.back.route')
-const filepondRouter = require('./routes/filepond.back.route')
 
 app.use('/lessons', lessonsRouter)
 app.use('/students', studentsRouter)
 app.use('/users', usersRouter)
 app.use('/musics', musicRouter)
-app.use('/filepond', filepondRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
