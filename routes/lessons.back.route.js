@@ -50,4 +50,21 @@ router.route('/student/:id').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
+// update lesson by id
+router.route('/update/:id').post((req, res) => {
+    Lesson.findById(req.params.id)
+        .then(lesson => {
+            
+            lesson.studentID= req.body.studentID,
+            lesson.musicID= req.body.musicID,
+            lesson.description= req.body.description,
+            lesson.date= req.body.date
+
+            music.save()
+                .then(() => res.json('Lesson updated!'))
+                .catch(err => res.status(400).json('Error: ' + err))
+        })
+        .catch(err => res.status(400).json('Error: ' + err))
+})
+
 module.exports = router
