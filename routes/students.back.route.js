@@ -34,7 +34,7 @@ router.route('/:id').get((req, res) => {
 // delete student by id
 router.route('/:id').delete((req, res) => {
     Student.findByIdAndDelete(req.params.id)
-        .then(student => res.json('Student deleted'))
+        .then( () => res.json('Student deleted'))
         .catch(err => res.status(400).json('Error: ' + err))
 })
 

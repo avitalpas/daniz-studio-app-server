@@ -54,13 +54,15 @@ router.route('/student/:id').get((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Lesson.findById(req.params.id)
         .then(lesson => {
+
+            console.log(req.body)
             
             lesson.studentID= req.body.studentID,
             lesson.musicID= req.body.musicID,
             lesson.description= req.body.description,
             lesson.date= req.body.date
 
-            music.save()
+            lesson.save()
                 .then(() => res.json('Lesson updated!'))
                 .catch(err => res.status(400).json('Error: ' + err))
         })
